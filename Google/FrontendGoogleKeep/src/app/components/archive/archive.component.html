@@ -1,0 +1,28 @@
+<div fxLayout="row wrap">
+    <div *ngFor='let item of Notes' fxLayoutAlign="center center" fxLayout.xs="column" fxFlex="30">
+  
+  
+      <div *ngIf="item.archive ===true">
+  
+      <mat-card [style.backgroundColor]='item.color' style="border: 1px solid lightgrey;border-radius:10px;"
+        fxFlex.xs="100" fxLayout="column" class="matcard" fxFlex="45" fxFlexOffset.xl="10">
+  
+  
+        <div fxLayout="column" fxLayoutAlign="start start"  mat-raised-button (click)="openDialog(item)">
+          <div class="title">
+            {{item.title}}
+          </div>
+  
+          <div class="discp">
+            {{item.description}}
+          </div>
+  
+        </div>
+        <div fxFlex="100">
+          <app-icon-list (colorEvent)="recieveColor($event)" (colorEvent)="updateColor($event,item._id)" [noteData]="item"></app-icon-list>
+        </div>
+  
+      </mat-card>
+    </div>
+    </div>
+  </div>

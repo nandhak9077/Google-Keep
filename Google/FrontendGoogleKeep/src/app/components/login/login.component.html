@@ -1,0 +1,102 @@
+<html>
+  <div fxLayoutAlign="space-around center" fxFlex="100">
+    <mat-card fxFlex="40" class="card" fxFlex.xs="70">
+      <div>
+        <mat-card-title
+          class="fundoo"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <span class="n">F</span>
+          <span class="n">u</span>
+          <span class="n">n</span>
+          <span class="n">d</span>
+          <span class="n">o</span>
+          <span class="n">o</span>
+        </mat-card-title>
+      </div>
+
+     
+
+      <!-- title & subtitle -->
+      <div>
+        <mat-card-title
+          calss="signin"
+          div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          >Login</mat-card-title
+        >
+        <mat-card-subtitle div fxLayout="row" fxLayoutAlign="center center"
+          >Use your Fundoo Account</mat-card-subtitle
+        >
+      </div>
+
+      <body>
+        <!-- user email id -->
+
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+          <mat-form-field appearance="outline" class="email">
+            <mat-label>Email id</mat-label>
+            <input
+              matInput
+              placeholder="Enter your email id"
+              [formControl]="email"
+              [errorStateMatcher]="matcher"
+            />
+            <mat-icon matSuffix>email</mat-icon>
+            
+            <mat-error
+              *ngIf="
+                email.hasError('email') &&
+                !email.hasError('required')
+              "
+            >
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- user password -->
+
+          <mat-form-field appearance="outline" class="password">
+            <mat-label>Enter your password</mat-label>
+            <input
+              matInput
+              placeholder="Enter your password"
+              [type]="hide ? 'password' : 'text'"
+              [formControl]="password"
+              autocomplete="off"
+              requried
+            />
+            <mat-icon matSuffix (click)="hide = !hide">{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+            <button mat-button (click)="forgotpassword()" class="pass-link" fxLayoutAlign="center">
+                Retrieve password?
+              </button>
+        </div>
+        <br>
+        <div id="register">
+          <button mat-button (click)="register()" class="link" fxLayoutAlign="center">
+            New User
+          </button>
+          <button
+            id="sigi-button" mat-button (click)="onsubmit()"
+            fxLayoutAlign="center center"
+            mat-raised-button
+            color="primary" mat-button aria-label="Show an example snack-bar"
+          >
+            Login
+          </button>
+        </div>
+        <!-- Sign in button -->
+      </body>
+    </mat-card>
+  </div>
+</html>

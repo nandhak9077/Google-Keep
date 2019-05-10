@@ -1,0 +1,15 @@
+<div [ngStyle]="{'background-color':data.notedata.color}" style="border: 1px solid lightgrey;border-radius:10px;">
+    <button mat-raised-button (click)="openDialog(item)"></button>
+  
+<div>
+    <textarea [ngStyle]="{'background-color':data.notedata.color}" type="text"  placeholder="Take a note..." [formControl]="title"></textarea>
+    </div>
+<div>
+    <textarea [ngStyle]="{'background-color':data.notedata.color}" type="text"  placeholder="Take a note..." [formControl]="description"></textarea>
+    </div>
+<div > 
+  <app-icon-list (colorEvent)="updateColor($event,data.notedata._id)"></app-icon-list>
+  <button mat-button  [mat-dialog-close] (click)="updatenote()">Close</button>
+  
+</div>
+</div>

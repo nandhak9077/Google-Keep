@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-title>
+    Edit Labels
+  </mat-card-title>
+  <mat-card-subtitle fxLayoutAlign="space-around center" >
+  <input matInput style="color: black" placeholder="Enter Label Name" [formControl]="label">
+  <button mat-button (click)="submitlabel()">
+  <mat-icon mat-raised-button color="primary" style="margin-left:50%;" >create</mat-icon>
+  </button>
+</mat-card-subtitle>
+<mat-card-content>
+  <div *ngIf="labels ? labels.length>0: false">
+    <div *ngFor="let item of labels" fxLayoutAlign="space-around center" >
+        <!-- <app-crud-label [labelData]='item' ></app-crud-label> -->
+      <!-- <button class=""
+        mat-button>
+       
+        <mat-icon>
+          label
+        </mat-icon>
+        {{item.label}}
+      </button> -->
+    <button  mat-button (click)="deletelabel(item._id)">
+      <mat-icon>
+        delete
+      </mat-icon>
+    </button>
+      <input matInput [(ngModel)]="item.label">
+
+  <button  mat-button (click)="submitlabel()">
+      <mat-icon>
+        done
+      </mat-icon>
+    </button>
+    </div>
+    <!-- <app-crud-label [labelData]='item' ></app-crud-label> -->
+  </div>
+</mat-card-content>
+ <mat-divider></mat-divider>
+ <mat-card-actions fxLayoutAlign="end center">
+  <button mat-button (click)="refresh()"  matTooltip="Refresh">Done</button>
+</mat-card-actions>
+    <!-- <button mat-raised-button color="primary" style="margin-left:55%;" [mat-dialog-close] (click)="submitlabel()">Create</button>  -->
+</mat-card>

@@ -1,0 +1,40 @@
+// /deep/.mat-dialog-container {
+//     display: block;
+//     padding: 0px;
+//     width: 120px;
+//     border-radius: 4px;
+//     box-sizing: border-box;
+//     overflow: auto;
+//     outline: 0;
+//     width: 100%;
+//     height: 100%;
+//     min-height: inherit;
+//     max-height: inherit;
+// }
+
+// /deep/.mat-dialog-actions {
+//     padding: 9px 0;
+//     display: flex;
+//     flex-wrap: wrap;
+//     min-height: 3px;
+//     align-items: center;
+//     margin-bottom: 0px;
+// }
+.fontSize{
+    font-size: 60%;
+}
+.width{
+    width: 60%
+}
+
+/deep/ .mat-dialog-container {
+    padding: 0 !important;
+    border-radius: 8px;
+    // overflow: hidden;
+    padding-top: 0 !important; 
+    }
+
+    
+    /deep/ .mat-card-title {
+        font-size: 15px;
+    }

@@ -1,0 +1,129 @@
+<html>
+  <div fxLayoutAlign="space-around center" fxFlex="100">
+    <mat-card fxFlex="40" class="card" fxFlex.xs="100">
+      <mat-card-title class="fundoo">
+        <span class="n">F</span>
+        <span class="n">u</span>
+        <span class="n">n</span>
+        <span class="n">d</span>
+        <span class="n">o</span>
+        <span class="n">o</span>
+      </mat-card-title>
+      <mat-card-header>
+        <mat-card-title calss="acc">Create your Fundoo Account</mat-card-title>
+        <mat-card-subtitle class="acc1">Continue to Fundoo</mat-card-subtitle>
+      </mat-card-header>
+
+      <body>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+          <mat-form-field appearance="outline" id="firstname">
+            <mat-label fxFlex="40"> First name</mat-label>
+            <input matInput placeholder="First name" [formControl]="name" />
+            <mat-icon matSuffix>perm_identity</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline" id="lastname">
+            <mat-label fxFlex="40"> Last name</mat-label>
+            <input matInput placeholder="Last name" [formControl]="lastname"/>
+            <mat-icon matSuffix>perm_identity</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+          <mat-form-field appearance="outline" class="email">
+            <mat-label fxFlex="40">Email id</mat-label>
+            <input
+              matInput
+              placeholder="Enter your email id"
+              [formControl]="email"
+              [errorStateMatcher]="matcher"
+            /><mat-icon matSuffix>email</mat-icon>
+            <mat-hint fxShow.sm="false" fxShow.xs="false" fxShow="true"
+              >Errors appear instantly!</mat-hint
+            >
+           
+            <mat-error
+              *ngIf="
+                email.hasError('email') &&
+                !email.hasError('required')
+              "
+            >
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+          <mat-form-field appearance="outline" class="password">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="Enter your password"
+              [type]="hide ? 'password' : 'text'"
+              [formControl]="password"
+              autocomplete="off"
+              requried
+            /><mat-icon id="suffix" matSuffix (click)="hide = !hide">{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+            <mat-hint fxShow.sm="false" fxShow.xs="false" fxShow="true"
+              >Use 8 or more characters with numbers & Symbole</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="confirm">
+            <mat-label>Confirm</mat-label>
+            <input
+              matInput
+              placeholder="Enter your password"
+              [type]="hide ? 'password' : 'text'"
+              [formControl]="confirmpassword"
+              autocomplete="off"
+              requried
+            /><mat-icon id="suffix" matSuffix (click)="hide = !hide">{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+            
+          </mat-form-field>
+          
+        </div>
+
+       
+          
+
+          <!-- Sign up button -->
+
+          <div class="signup-in">
+          
+
+          <!-- <button
+          mat-button
+          (click)="login()"
+          class="sinin-link"
+          fxLayoutAlign="center"
+        >
+          Log insted
+        </button> -->
+
+        <button
+            id="signbutton"
+            mat-button
+            (click)="onsubmit()"
+            fxLayoutAlign="center center"
+            mat-raised-button
+            color="primary"
+            mat-button
+            aria-label="Show an example snack-bar"
+          >
+            Register
+          </button>
+        </div>
+
+        
+
+        
+      </body>
+    </mat-card>
+  </div>
+</html>

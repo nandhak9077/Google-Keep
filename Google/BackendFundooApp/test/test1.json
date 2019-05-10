@@ -1,0 +1,55 @@
+{
+    "registration": {
+        "firstname": "nandhu",
+        "lastname": "bala",
+        "email": "nandhak9077@gmail.com",
+        "password": "1234567890"
+    },
+    "login": {
+        "email": "nandhak9077@gmail.com",
+        "password": "1234567890"
+    },
+    "forgotPassword":{
+        "email":"nandhak9077@gmail.com"
+    },
+    "createNote":{
+        "userId":"5cc180d11889f8507819f588",
+        "title":"Sports",
+        "description":"World cup",
+        "reminder":"6am",
+        "color":"rose",
+        "archive":"true",
+        "trash":"true"
+    },
+    "getNotes":{
+       
+    },
+    "updateColor": {
+        "noteID": "5cc181321889f8507819f589",
+        "color": "pink"
+        
+    },
+    "updatenote": {
+        "noteID": "5cc181321889f8507819f589",
+       "title":"heroooo",
+       "description":"yeaaaa"
+        
+    },
+    "delete": {
+        "noteID": "5cc181321889f8507819f589"
+       
+    },
+    "archive": {
+        "noteID": "5cc181321889f8507819f589",
+        "archive": "true"
+    },
+    "isTrashed": {
+        "noteID": "5cc181321889f8507819f589",
+        "trash": "true"
+    },
+    "reminder": {
+        "noteID": "5cc181321889f8507819f589",
+        "reminder": "12pm"
+    }
+   
+}

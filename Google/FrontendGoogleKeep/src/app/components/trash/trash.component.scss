@@ -1,0 +1,71 @@
+h3{
+    font-family: Georgia;
+    font-style: italic;
+}
+.emt-trash{
+    background-color: rgb(251, 251, 251);
+    color: #1a73e8;
+}
+app-displaynote {
+    flex-wrap: wrap;
+}
+.trash{
+    color: #202124;
+    cursor: default;
+    // display: -webkit-box;
+    // display: -moz-box;
+    // display: -ms-flexbox;
+    // display: -webkit-flex;
+    display: flex;
+    font-size: 17px;
+    font-style: italic;
+    // -webkit-align-items: center;
+    align-items: center;
+    // -webkit-justify-content: center;
+    justify-content: center;
+    padding-top: 24px;
+    padding-bottom: 8px;
+}
+// ::ng-deep .menu-panel{
+//     min-width: 220px
+// }
+
+.card{
+    height: 15%;
+  }
+  .mat-card mat-card-title{
+    font-size: 5mm;
+    font-family: 'Times New Roman';
+    
+  }
+  .matcard{
+   
+    border-radius: 2%;
+    margin-top: 2%;
+    min-width: 240px;
+    margin-left: 35%
+  }
+  .pin{
+    opacity: 0;
+    &:hover{
+    opacity: 1;
+    }
+  
+    .btn{
+        opacity:0.2;
+        &:hover{
+          opacity: 1.5;
+        }
+      
+    }
+  }
+  .title{
+    font-family: 'Times New Roman';
+    font-weight: bold;
+  }
+  .discp{
+    font-family: sans-serif
+  }
+  
+  
+  

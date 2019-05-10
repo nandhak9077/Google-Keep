@@ -1,0 +1,51 @@
+<div fxLayout="row wrap">
+  <div *ngFor='let item of Notes' fxLayoutAlign="start center" fxLayout.xs="column" fxFlex="30">
+
+
+    <div *ngIf="item.reminder != 'none'">
+
+    <mat-card [style.backgroundColor]='item.color' style="border: 1px solid lightgrey;border-radius:10px;"
+      fxFlex.xs="100" fxLayout="column" class="matcard" fxFlex="45" fxFlexOffset.xl="10">
+
+
+      <div fxLayout="column" fxLayoutAlign="start start" mat-raised-button (click)="openDialog(item)">
+        <div class="title">
+          {{item.title}}
+        </div>
+
+        <div class="discp">
+          {{item.description}}
+        </div>
+        <div>
+            <mat-chip-list #chipList>
+                <mat-chip [selectable]="selectable"
+                         [removable]="removable" (removed)="remove(item)">
+                         {{item.reminder}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                </mat-chip-list>
+        </div>
+      </div>
+
+
+      <div fxFlex="100" *ngIf="cond == 'trash'">
+        <button mat-icon-button [matMenuTriggerFor]="menu" colour="basic" matTooltip="more">
+          <img id="img" src="../../../assets/images/outline-more_vert-24px.svg" />
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="deleteForever(item)">
+            Delete Forever
+          </button>
+          <button mat-menu-item (click)="restore(item)">Restore</button>
+        </mat-menu>
+      </div>
+
+
+      <div fxFlex="100">
+        <app-icon-list (colorEvent)="recieveColor($event)" (colorEvent)="updateColor($event,item._id)" [noteData]="item"></app-icon-list>
+      </div>
+
+    </mat-card>
+  </div>
+  </div>
+</div>

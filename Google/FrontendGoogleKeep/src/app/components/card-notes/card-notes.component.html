@@ -1,0 +1,118 @@
+<div cdkDropList (cdkDropList)="drop($event)">
+<div *ngIf="gridView" fxLayout="row wrap" >
+  <!-- <div *ngFor='let item of Notes' fxLayoutAlign="center center" fxLayout.xs="column" fxFlex="30"> -->
+    <div cdkDrag *ngFor='let item of Notes | searchPipe:searchText' fxLayoutAlign="center center" fxLayout.xs="column" fxFlex="30"  >
+
+
+    <div *ngIf="item.archive === 'false'|| item.archive === none && item.trash === 'false' ||  item.trash === none">
+        <!-- <div *ngIf="item.archive === 'false'||item.archive === none || item.trash !== 'false' ||item.trash === none "> -->
+
+    <mat-card [style.backgroundColor]='item.color' style="border: 1px solid lightgrey;border-radius:10px;"
+      fxFlex.xs="100" fxLayout="column" class="matcard" fxFlex="45" fxFlexOffset.xl="10" 
+      cdkDropList (cdkDropListDropped)="drop($event)"
+      >
+
+
+      <div fxLayout="column" fxLayoutAlign="start start" >
+          <div>
+              <img src="{{item.notemessage}}" width="190px" height="150px">
+            </div>
+        <div class="title"  >
+          {{item.title}}
+        </div>
+
+        <div class="discp"  mat-raised-button (click)="openDialog(item)">
+          {{item.description}}
+        </div>
+        <div >
+           
+                <mat-chip-list #chipList>
+                  <mat-chip [selectable]="selectable"
+                           [removable]="removable" (removed)="remove(item)">
+                           {{item.reminder}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  </mat-chip-list>
+              
+          <!-- {{item.reminder}} -->
+        </div>
+      </div>
+
+
+      <div fxFlex="100" *ngIf="cond == 'trash'">
+        <button mat-icon-button [matMenuTriggerFor]="menu" colour="basic" matTooltip="more">
+          <img id="img" src="../../../assets/images/outline-more_vert-24px.svg" />
+        </button>
+        <!-- <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="deleteForever(item)">
+            Delete Forever
+          </button>
+          <button mat-menu-item (click)="restore(item)">Restore</button>
+        </mat-menu> -->
+      </div>
+
+
+      <div fxFlex="100">
+        <app-icon-list (colorEvent)="recieveColor($event)" (colorEvent)="updateColor($event,item._id)" [noteData]="item"></app-icon-list>
+      </div>
+
+    </mat-card>
+  </div>
+  </div>
+</div>
+</div>
+<div cdkDropList (cdkDropList)="drop($event)">
+<div *ngIf="gridView==false" fxLayout="column wrap" >
+  <div cdkDrag *ngFor='let item of Notes' fxLayoutAlign="center center" fxLayout.xs="column" fxFlex="30">
+
+
+    <div *ngIf="item.archive === 'false'|| item.archive === none && item.trash === 'false' ||  item.trash === none">
+
+    <mat-card [style.backgroundColor]='item.color' style="border: 1px solid lightgrey;border-radius:10px;"
+      fxFlex.xs="100" fxLayout="column" class="matcard" fxFlex="45" fxFlexOffset.xl="10">
+
+
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <div class="title"  mat-raised-button (click)="openDialog(item)">
+          {{item.title}}
+        </div>
+
+        <div class="discp">
+          {{item.description}}
+        </div>
+        <div >
+           
+                <mat-chip-list #chipList>
+                  <mat-chip [selectable]="selectable"
+                           [removable]="removable" (removed)="remove(item)">
+                           {{item.reminder}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  </mat-chip-list>
+              
+          <!-- {{item.reminder}} -->
+        </div>
+      </div>
+
+
+      <div fxFlex="100" *ngIf="cond == 'trash'">
+        <button mat-icon-button [matMenuTriggerFor]="menu" colour="basic" matTooltip="more">
+          <img id="img" src="../../../assets/images/outline-more_vert-24px.svg" />
+        </button>
+        <!-- <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="deleteForever(item)">
+            Delete Forever
+          </button>
+          <button mat-menu-item (click)="restore(item)">Restore</button>
+        </mat-menu> -->
+      </div>
+
+
+      <div fxFlex="100">
+        <app-icon-list (colorEvent)="recieveColor($event)" (colorEvent)="updateColor($event,item._id)" [noteData]="item"></app-icon-list>
+      </div>
+
+    </mat-card>
+  </div>
+  </div>
+</div></div>

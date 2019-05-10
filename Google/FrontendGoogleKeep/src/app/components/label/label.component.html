@@ -1,0 +1,15 @@
+<div *ngIf="labels ? labels.length>0: false">
+  <div *ngFor="let item of labels">
+      <!-- <app-crud-label [labelData]='item' ></app-crud-label> -->
+    <button class=""
+      mat-button>
+     
+      <mat-icon>
+        label
+      </mat-icon>
+      {{item.label}}
+    </button>
+  </div>
+  <!-- <app-crud-label [labelData]='item' ></app-crud-label> -->
+</div>
+<!-- extra -->

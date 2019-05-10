@@ -1,0 +1,272 @@
+
+ <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
+  <mat-toolbar class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon matTooltip="Main menu">menu</mat-icon>
+    </button>
+
+    <div fxFlex="2">
+      <div
+        fxFlex="10"
+        fxLayout="row"
+        fxFlex.gt="500px"
+        [style.fontSize.px]="1"
+        matTooltip="Welcome to Fundoo Notes"
+      >
+        <img
+          id="google-keep-logo"
+          src="../../../assets/images/icons8-google-keep.svg"
+        />
+
+                <h3 class="example-app-name" fxLayoutAlign="center center">
+          <mat-card-title
+            class="fundoo"
+            fxLayout="row"
+            fxLayoutAlign="end center"
+          >
+            <span >{{message}}</span>
+           
+          </mat-card-title>
+        </h3>
+      </div>
+    </div>
+
+    <div fxFlex="80" fxLayoutAlign="end start">
+      <mat-form-field
+        appearance="outline"
+        fxHide.xs
+        [style.fontSize.px]="2"
+        class="search"
+      >
+        <button mat-icon-button class="search-button">
+          <mat-icon matTooltip="Search">search</mat-icon>
+        </button>
+
+        <input
+          fxFlex="90"
+          [(ngModel)]="search" (keyup)="lookup()" 
+          matInput
+          placeholder="Search"
+          [style.fontSize.px]="16"
+          class="search-window"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="25" class="settingbtn">
+      <button mat-icon-button color="basic" (click)="refresh()" id="refresh" matTooltip="Refresh">
+        <mat-icon>refresh</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        color="basic"
+        id="grid"
+        fxHide.xs
+      >
+        <mat-icon>
+          <img *ngIf="gridView" (click) ="changeview()"         matTooltip="List view"
+
+              
+            src="../../../assets/images/outline-view_agenda-24px.svg"/>
+          <img isClicked 
+          *ngIf="!gridView" (click) ="changeview()" matTooltip="Grid view"
+            src="../../../assets/images/outline-border_all-24px.svg"
+        /></mat-icon>
+      </button>
+
+      
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menuu"
+        colour="basic"
+        matTooltip="settings"
+      >
+        <mat-icon
+          ><img src="../../../assets/images/outline-settings-24px.svg"
+        /></mat-icon>
+      </button>
+      <mat-menu #menuu="matMenu">
+        <button mat-menu-item>Settings part</button>
+        <button mat-menu-item>Send feedback</button>
+        <button mat-menu-item>Help</button>
+        <button mat-menu-item>App downloads</button>
+        <button mat-menu-item>Keyboard Shortcuts</button>
+      </mat-menu>
+
+      <button mat-icon-button color="basic" matTooltip="Apps">
+          
+        <mat-icon
+          ><img src="../../../assets/images/outline-apps-24px.svg"
+        /></mat-icon>
+       
+      </button>
+      <button mat-icon-button  color="basic"  matTooltip="Logout" [matMenuTriggerFor]="menu">
+          <mat-menu #menu="matMenu">
+              <button  mat-menu-item  (click)="help()">Help</button>
+              <button mat-menu-item (click)="signout()" >Logout</button>
+              
+            </mat-menu>
+          
+        <mat-icon> lock_open</mat-icon>
+        
+      </button>
+     
+
+    </div>
+   
+    <!-- <button
+      mat-icon-button
+      
+      matTooltip=" Fundoo Account"
+      (click)="openDialogBox()"
+      (click)="getImage()"
+      
+    ><img mat-card-avatar src={{imgUrl}}>
+      <div mat-card-avatar class="example-header-image" (click)="getImage()">
+        
+      </div><img mat-card-avatar src={{imgUrl}}>
+    </button> -->
+    <button mat-icon-button [matMenuTriggerFor]="menuu" aria-label="Example icon-button with a menu"  (click)="getImage()">
+      <!-- <button mat-icon-button [matMenuTriggerFor]="menuu"  aria-label="Example icon-button with a menu" (click)="openDialogBox()"  > -->
+      <img mat-card-avatar src={{imgUrl}} >
+      </button>
+      <mat-menu #menuu="matMenu">
+      <mat-card>
+      <img mat-card-avatar src={{imgUrl}}>
+      </mat-card></mat-menu>
+    <mat-menu
+      #menu1="matMenu"
+      div
+      fxLayout="row"
+      fxLayoutAlign="end start"
+      class="menu-button"
+    >
+      <!-- <button mat-fab disabled id="user-image-button"><img mat-card-avatar src={{imgUrl}}>
+        <div mat-card-avatar class="example-header-image" ></div>
+      </button> -->
+
+      <div class="profileMenu">
+        <div fxLayout="row" fxLayoutAlign="start start">
+       
+        </div>
+
+        <!-- <div fxLayout="row" fxLayoutAlign="center start" class="userNameinf">
+          <p>{{username}}</p>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <p class="userEmail">{{email}}</p>
+        </div> -->
+
+        <!-- <mat-divider></mat-divider> -->
+        <button mat-flat-button (click)="addAccount()">Add account</button>
+        <button class="signout" mat-flat-button (click)="signout()">
+          Sign out
+        </button>
+      </div>
+    </mat-menu>
+  </mat-toolbar>
+
+
+  <mat-sidenav-container fxFlexFill fxFlex="100"
+    class="example-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+      fxHide.xs
+      class="sidenav"
+    >
+      <mat-nav-list>
+        <mat-list role="List">
+          <div>
+          <mat-list-item
+            role="listitem"
+            id="note"
+            (click)="note()"
+           
+          >
+            <img id="img1" src="../../../assets/images/note.svg" />
+            Notes</mat-list-item
+          ></div>
+
+          <div>
+          <mat-list-item role="listitem" (click)="reminders()" id="rem">
+            <img id="img2" src="../../../assets/images/remainder.svg" />
+            Reminders</mat-list-item
+          ></div>
+
+      <mat-divider></mat-divider>
+          <div>
+          <p id="para">LABELS</p><div mat-raised-button>
+          <!-- <div *ngIf="allLabels ? allLabels.length>0: false" >
+            <div  mat-raised-button (click)="openDialogs(label)">
+              <button (click)="iconlabel()" mat-raised-button (click)="openDialogs(label)"
+                 mat-button>
+               
+                <mat-icon mat-raised-button (click)="openDialogs(label)">
+                  label
+                </mat-icon>
+                label
+              </button>
+            </div>
+          </div> -->
+          <app-label></app-label></div>
+          <mat-list-item role="listitem" (click)="openDialog()" id="lable">
+            <mat-icon id="edit">edit</mat-icon>
+            Edit label
+          </mat-list-item></div>
+
+          <mat-divider></mat-divider> 
+          <!-- <mat-divider></mat-divider>
+
+          <p class="textSize">LABELS</p>
+
+          <div *ngIf="allLabels ? allLabels.length>0: false">
+            <div *ngFor="let label of allLabels">
+              <button (click)="headerName= label.labelName"
+                [ngClass]="{'sideNavListItems': headerName!='Remainders', 'sideNavlistItemsColored': headerName==label.labelName}"
+                routerLink="label/{{label.labelName}}" mat-button>
+                <mat-icon>
+                  label
+                </mat-icon>
+                {{label.labelName}}
+              </button>
+            </div>
+          </div>
+
+          <button class="sideNavListItems" mat-button (click)="OpenEditLabel()">
+            <mat-icon>edit</mat-icon>
+            Edit Labels
+          </button>
+
+        
+          <mat-divider></mat-divider> -->
+          <div>
+          <mat-list-item role="listitem" id="arch" (click)="archive()">
+            <img id="img4" src="../../../assets/images/archieve.svg" />
+            Archive</mat-list-item
+          ></div>
+
+          <div>
+          <mat-list-item role="listitem" id="bin" (click)="trashBox()">
+            <img id="img5" src="../../../assets/images/bin.svg" />
+            Trash</mat-list-item
+          ></div>
+
+        </mat-list>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill fxFlex="100" fxLayout="column">
+     <!-- <div> <app-addnote></app-addnote></div> -->
+      <!-- <div style="width:100%"><app-card-notes></app-card-notes></div> -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div> 
+
+
